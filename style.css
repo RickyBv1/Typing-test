@@ -1,3 +1,9 @@
+:root {
+    --border-radius: 20px;
+    --objects-background: rgba(0, 0, 0, 0.38);
+    --font-size: 100px;
+}
+
 html {
     --s: 28px; /* control the size*/
     --c1: #74b573;
@@ -12,7 +18,16 @@ html {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0;
+    min-height: 10vh;
+}
+
+p,b,span, button{
+	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 .hidden {
@@ -20,6 +35,8 @@ body {
 }
 
 #progressBar {
+    position: absolute;
+    top: 0px;
     height: 10px;
     width: 100%;
     background-color: lightgreen;
@@ -35,6 +52,22 @@ body {
     animation-duration: var(--gameTime);
     animation-fill-mode: forwards;
     animation-timing-function: linear;
+}
+
+#end p {
+    background-color: var(--objects-background);
+    color: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+
+button {
+    padding: 50px;
+    border: unset;
+    border-radius: var(--border-radius);
+    background-color: var(--objects-background);
+    color: white;
+    font-size: var(--font-size);
 }
 
 @keyframes completeProgressBar {
