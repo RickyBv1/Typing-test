@@ -39,8 +39,20 @@ p,b,span, button{
 }
 
 .invisible {
+    opacity: 0%;
+}
+
+input {
     position: absolute;
     top: -10000000000px;
+}
+
+#currentWord {
+    font-size: var(--font-size);
+}
+
+.currentLetter {
+    color: rgb(219, 73, 73);
 }
 
 #progressBar {
@@ -48,21 +60,14 @@ p,b,span, button{
     top: 0;
     height: 10px;
     width: 100%;
-    background-color: lightgreen;
+    background-color: rgba(144, 238, 144, 0.582);
 }
 
 #progressBar div {
     position: absolute;
     top: 0;
     height: 10px;
-    background-color: darkblue;
-}
-
-.completeTime {
-    animation-name: completeProgressBar;
-    animation-duration: var(--gameTime);
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
+    background-color: rgba(0, 0, 139, 0.767);
 }
 
 #end p {
@@ -82,11 +87,41 @@ button {
     cursor: pointer;
 }
 
+.completeTime {
+    animation-name: completeProgressBar;
+    animation-duration: var(--gameTime);
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+.dissapear {
+    font-size: var(--font-size);
+    position: absolute;
+    animation-name: dissapear;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
 @keyframes completeProgressBar {
     0% {
         width: 0%;
     }
     100% {
         width: 100%;
+    }
+}
+
+@keyframes dissapear {
+    0% {
+
+    }
+    05% {
+        color: rgb(69, 91, 136);
+    }
+    100% {
+        transform: translateY(-100%);
+        opacity: 0%;
+        font-size: calc(var(--font-size) / 2);
     }
 }

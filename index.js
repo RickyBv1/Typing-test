@@ -23,6 +23,7 @@ function startGame() {
     let incorrectLetters = 0;
     let finnishedWords = 0;
     end.classList.toggle("hidden", true);
+    lettersList[0].classList.toggle("currentLetter");
     progressBar.classList.toggle("completeTime", true);
     beginButton.classList.toggle("hidden", true);
 }
@@ -39,6 +40,21 @@ function newWord() {
         wordContainer.appendChild(letterElement);
         lettersList.push(letterElement);
     }
+}
+
+function createLetterEffect(element) {
+    element.classList.toggle("dissapear", true);
+    const letter = element.textContent
+    const letterPosition = element.getBoundingClientRect();
+    console.log(letter, letterPosition)
+    const newLetter = document.createElement("span");
+    newLetter.style = `
+    left: ${letterPosition.left}px;
+    top: ${letterPosition.top}px;
+    `
+    newLetter.classList.add("dissapear");
+    newLetter.textContent = letter;
+    document.body.appendChild(newLetter);
 }
 
 //Events
@@ -61,11 +77,13 @@ newWord();
 input.addEventListener("input", (event) => {
     if(event.data === lettersList[currentIndex].textContent) {
         console.log("correct")
+        createLetterEffect(lettersList[currentIndex]);
         currentIndex++;
         correctLetters++;
         if(currentIndex === lettersList.length) {
             newWord();
         }
+        lettersList[currentIndex].classList.toggle("currentLetter");
     } else {
         incorrectElement++;
     }
