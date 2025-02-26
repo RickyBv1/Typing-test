@@ -51,6 +51,14 @@ input {
     font-size: var(--font-size);
 }
 
+#correctElement span {
+    color: aquamarine;
+}
+
+#incorrectElement span {
+    color: #e93737;
+}
+
 .currentLetter {
     color: rgb(219, 73, 73);
 }
