@@ -26,7 +26,7 @@ function newWord() {
 	currentIndex = 0;
 	const chosenWordNumber = Math.floor(Math.random() * (words.length - 1));
 	const chosenWord = words[chosenWordNumber];
-	deleteChildren(wordContainer);
+	deleteChildren(wordContainer)
 	lettersList = [];
 	for (let i = 0; i < chosenWord.length; i++) {
 		const letterElement = document.createElement("span");

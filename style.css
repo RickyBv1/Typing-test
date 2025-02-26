@@ -116,7 +116,7 @@ button{
 }
 
 .completeTime{
-	animation-duration: var(--tiempo);
+	animation-duration: var(--gameTime);
 	animation-name: completeTime;
 	animation-fill-mode: forwards;
 	animation-timing-function: linear;
