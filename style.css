@@ -4,10 +4,6 @@
     --font-size: 100px;
 }
 
-*{
-    user-select: none;
-}
-
 html {
     --s: 28px; /* control the size*/
     --c1: #74b573;
@@ -21,115 +17,139 @@ html {
     background-size: calc(4*var(--s)) calc(4*var(--s));
 }
 
-body {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+body{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	margin: 0;
 }
 
-p,b,span, button{
+p, span {
 	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
-.hidden {
-    display: none;
+*{
+	user-select: none;
 }
 
-.invisible {
-    opacity: 0%;
+button{
+	cursor: pointer;
 }
 
-input {
-    position: absolute;
-    top: -10000000000px;
+input{
+	position: absolute;
+	opacity: 0%;
 }
 
-#currentWord {
-    font-size: var(--font-size);
+#progressBar{
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	height: 10px;
+	background-color: rgba(111, 255, 0, 0.141);
 }
 
-#correctElement span {
-    color: aquamarine;
+#progressBar div{
+	position: absolute;
+	height: 100%;
+	top: 0;
+	background-color: rgb(205, 156, 156);
+} 
+
+button{
+	font-size: var(--font-size);
+	padding: 50px;
+	border: unset;
+	border-radius: var(--border-radius);
+	color: rgb(241, 255, 240);
+	background-color: var(--objects-background);
 }
 
-#incorrectElement span {
-    color: #e93737;
+#currentWord{
+	font-size: var(--font-size);
 }
 
-.currentLetter {
-    color: rgb(219, 73, 73);
+.currentLetter{
+	color: rgb(246, 63, 112);
 }
 
-#progressBar {
-    position: absolute;
-    top: 0;
-    height: 10px;
-    width: 100%;
-    background-color: rgba(144, 238, 144, 0.582);
+.data{
+	color: white;
+	padding: 20px;
+	background-color: var(--objects-background);
+	border-radius: var(--border-radius);
 }
 
-#progressBar div {
-    position: absolute;
-    top: 0;
-    height: 10px;
-    background-color: rgba(0, 0, 139, 0.767);
+#correctElement span{
+	color: rgb(217, 255, 217);
 }
 
-#end p {
-    background-color: var(--objects-background);
-    color: white;
-    padding: 20px;
-    border-radius: var(--border-radius);
+#incorrectElement span{
+	color: rgb(255, 217, 217);
 }
 
-button {
-    padding: 50px;
-    border: unset;
-    border-radius: var(--border-radius);
-    background-color: var(--objects-background);
-    color: white;
-    font-size: var(--font-size);
-    cursor: pointer;
+.hidden{
+	display: none;
 }
 
-.completeTime {
-    animation-name: completeProgressBar;
-    animation-duration: var(--gameTime);
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
+.invisible{
+	opacity: 0%;
 }
 
-.dissapear {
-    font-size: var(--font-size);
-    position: absolute;
-    animation-name: dissapear;
-    animation-duration: 500ms;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
+.show{
+	animation: show;
+	animation-duration: 500ms;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
 }
 
-@keyframes completeProgressBar {
-    0% {
-        width: 0%;
-    }
-    100% {
-        width: 100%;
-    }
+.disappear{
+	position: absolute;
+	font-size: var(--font-size);
+	top: var(--top);
+	left: var(--left);
+	animation-duration: 500ms;
+	animation-name: disappear;
+	animation-timing-function: ease-in-out;
 }
 
-@keyframes dissapear {
-    0% {
+.completeTime{
+	animation-duration: var(--tiempo);
+	animation-name: completeTime;
+	animation-fill-mode: forwards;
+	animation-timing-function: linear;
+}
 
-    }
-    05% {
-        color: rgb(69, 91, 136);
-    }
-    100% {
-        transform: translateY(-100%);
-        opacity: 0%;
-        font-size: calc(var(--font-size) / 2);
-    }
+@keyframes show {
+	0%{
+		opacity: 0%;
+	}
+	100%{
+		opacity: 100%;
+	}
+}
+
+@keyframes disappear{
+	0%{
+
+	}
+	50%{
+		color: rgb(69, 91, 136);
+	}
+	100%{
+		transform: translateY(-100%);
+		opacity: 0%;
+		font-size: calc( var(--font-size) / 2 );
+	}
+}
+
+@keyframes completeTime{
+	0%{
+		width: 0%;
+	}
+	100%{
+		width: 100%;
+	}
 }
