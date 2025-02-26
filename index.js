@@ -11,22 +11,33 @@ const wordContainer = document.getElementById("currentWord");
 
 //Variables
 const gameTime = 5; // in seconds
+let correctLetters;
+let incorrectLetters;
+let finnishedWords;
+let lettersList = [];
+let currentIndex;
 
 //functions
 function startGame() {
+    let correctLetters = 0;
+    let incorrectLetters = 0;
+    let finnishedWords = 0;
     end.classList.toggle("hidden", true);
     progressBar.classList.toggle("completeTime", true);
     beginButton.classList.toggle("hidden", true);
 }
 
 function newWord() {
+    if(lettersList.length > 0) lettersList.forEach(letter => wordContainer.removeChild(letter));
     const chosenWordNumber = Math.floor(Math.random() * wordsArray.length);
     const chosenWord = wordsArray[chosenWordNumber];
-    console.log(chosenWord);
+    lettersList = []
+    currentIndex = 0;
     for (let i = 0; i < chosenWord.length; i++) {
         const letterElement = document.createElement("span");
         letterElement.textContent = chosenWord[i];
         wordContainer.appendChild(letterElement);
+        lettersList.push(letterElement);
     }
 }
 
@@ -47,5 +58,17 @@ progressBar.addEventListener("animationend", () => {
 input.focus();
 document.documentElement.style.setProperty("--gameTime", gameTime + "s");
 newWord();
-input.addEventListener("input", (event) => console.log(event));
+input.addEventListener("input", (event) => {
+    if(event.data === lettersList[currentIndex].textContent) {
+        console.log("correct")
+        currentIndex++;
+        correctLetters++;
+        if(currentIndex === lettersList.length) {
+            newWord();
+        }
+    } else {
+        incorrectElement++;
+    }
+    
+});
 input.addEventListener("blur", () => input.focus());
